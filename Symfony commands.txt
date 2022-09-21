@@ -9,3 +9,16 @@ symfony console debug:router donne tout les liens du profiler
 symfony console doctrine:database:create création d'une base de donnée
 
 symfony console make:entity "nom de l'entité" | Création d'une entité
+
+symfony console make:migration | Création d'une migration
+
+symfony console doctrine:migration:migrate  | Migration ( Création de la bdd)
+
+
+ composer require orm-fixtures --dev | Ajouter une fixture
+
+ symfony console make:fixture ArticleFixtures | Création des fixture pour la classe 'Article'
+
+ symfony console doctrine:fixtures:load | Envoi des fixtures
+
+
