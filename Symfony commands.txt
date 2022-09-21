@@ -1,0 +1,11 @@
+Symfony new "Nom du projet" --webapp | création d'un projet ( --full si ancienne version ) 
+
+symfony console about | gestion de version 
+
+symfony console make:controller "Nom du controller"
+
+symfony console debug:router donne tout les liens du profiler
+
+symfony console doctrine:database:create création d'une base de donnée
+
+symfony console make:entity "nom de l'entité" | Création d'une entité
