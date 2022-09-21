@@ -12,7 +12,7 @@ symfony console make:entity "nom de l'entité" | Création d'une entité
 
 symfony console make:migration | Création d'une migration
 
-symfony console doctrine:migration:migrate  | Migration ( Création de la bdd)
+symfony console doctrine:migration:migrate  | OU symfony console d:m:m Migration ( Création de la bdd)
 
 
  composer require orm-fixtures --dev | Ajouter une fixture
