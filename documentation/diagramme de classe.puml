@@ -1,0 +1,20 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Article{
+-id : int
+-titre : string
+-contenu : text
+-createdAt : datetime
+-slug : string
+}
+
+class Categorie{
+-id : int
+-titre : string
+-slug : string
+}
+
+Article"0..*" -- "0..1"Categorie
+
+@enduml

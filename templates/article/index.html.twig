@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}liste des articles{% endblock %}
+
+{% block body %}
+    <h1>Liste des articles</h1>
+    <ul class="list-group">
+        {% for article in articles %}
+            <ul class="p-2">
+                <div class="border p-2 bg-light mt-4 mb-4"><h4>{{ article.titre }}</h4>
+                    <p class="font-italic mb-5">écrit le : {{ article.createdAt|date('d/m/Y') }}</p>
+                    <a class="btn btn-success" href="{{ path('app_article_slug', {'slug': article.slug}) }}">Detail</a>
+
+                </div>
+            </ul>
+        {% endfor %}
+    </ul>
+{% endblock %}
