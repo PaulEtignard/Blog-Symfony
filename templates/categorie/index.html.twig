@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Toute nos catégories{% endblock %}
+
+{% block body %}
+    <h1>liste de toute les catégories : </h1>
+    <ul class="mt-3">
+
+        {% for categorie in categories %}
+
+                <li class="list-group">
+                    <div class=".container border ">
+                        {{ categorie.titre }} ({{ categorie.articles | length}} articles)
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a href="{{ path('app_categorie_slug', {'slug': categorie.slug}) }}"><button class="btn btn-primary" type="button">Detail</button></a>
+                        </div>
+                    </div>
+                </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
