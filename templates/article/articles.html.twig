@@ -6,9 +6,9 @@
 
     <ul class="p-2">
         <div class="border p-2 bg-light mt-4 mb-4"><h4>{{ article.titre }}</h4>
-            <p class="font-italic mb-5">écrit le : {{ article.createdAt|date('d/m/Y') }}</p>
+            <p class="font-italic mb-3">écrit le : {{ article.createdAt|date('d/m/Y') }}</p>
 
-            <a href=""><span class="badge badge-secondary bg-success">{{ categorie }}</span></a>
+            <a href="{{ path('app_categorie_slug', {'slug': article.categorie.slug}) }}"><span class="badge badge-secondary bg-success mb-3">{{ article.categorie.titre }}</span></a>
             <p>{{ article.contenu }}</p>
         </div>
     </ul>
