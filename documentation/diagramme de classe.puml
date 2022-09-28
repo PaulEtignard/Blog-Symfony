@@ -14,7 +14,22 @@ class Categorie{
 -titre : string
 -slug : string
 }
+class utilisateur{
+-id: int
+-nom : string
+-prenom :string
+-pseudo :string
+}
+class commentaire{
+-id: int
+-contenu : string
+-dateCreation : datetime
+}
+
 
 Article"0..*" -- "0..1"Categorie
+Article"1..1"--"0..*"commentaire
+utilisateur"0..1"--"0..*"commentaire
+
 
 @enduml

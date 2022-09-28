@@ -4,14 +4,12 @@
 
 {% block body %}
 <h1>liste des article correspondant a "{{ categorie.titre }}"</h1>
-    {% for article in categorie.articles|sort() %}
+    <p> articles trouvé : {{ categorie.articles | length }}</p>
+    {% for article in categorie.articles %}
         <ul class="">
             <div class="border p-2 bg-light mt-3 mb-3 "><h4>{{ article.titre }}</h4>
                 <p class=" font-italic mb-5">écrit le : {{ article.createdAt|date('d/m/Y') }}</p>
                 <p>{{ article.contenu }}</p>
-
-
-
             </div>
         </ul>
     {% endfor %}
