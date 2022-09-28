@@ -5,11 +5,35 @@
 {% block body %}
 
     <ul class="p-2">
-        <div class="border p-2 bg-light mt-4 mb-4"><h4>{{ article.titre }}</h4>
+        <div class="border p-2 bg-light mt-4 mb-4"><h1>{{ article.titre }}</h1>
             <p class="font-italic mb-3">écrit le : {{ article.createdAt|date('d/m/Y') }}</p>
 
             <a href="{{ path('app_categorie_slug', {'slug': article.categorie.slug}) }}"><span class="badge badge-secondary bg-success mb-3">{{ article.categorie.titre }}</span></a>
             <p>{{ article.contenu }}</p>
+            <h2>Commentaire(s) sur l'article ({{article.commentaires | length  }}) : </h2>
+                {% for commentaire in article.commentaires %}
+                    <div class="card mt-3">
+                        <div class="card-header">
+                            {% if commentaire.utilisateur is not empty %}
+                           Auteur : {{ commentaire.utilisateur.pseudo }}
+                            {% else %}
+                                Anonyme
+                            {% endif%}
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title"></h5>
+                            <p class="card-text">{{ commentaire.contenu }}</p>
+                            <p class="card-text text-secondary">Ecrit le : {{ commentaire.createdat | date('d/m/Y') }}</p>
+
+
+                        </div>
+                    </div>
+                {% endfor %}
+
+
+
+
+
         </div>
     </ul>
 {% endblock %}
