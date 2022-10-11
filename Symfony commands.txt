@@ -20,4 +20,5 @@ symfony console doctrine:migration:migrate  | OU symfony console d:m:m Migration
 
  symfony console doctrine:fixtures:load | Envoi des fixtures
 
+symfony console doctrine:create:database
 
