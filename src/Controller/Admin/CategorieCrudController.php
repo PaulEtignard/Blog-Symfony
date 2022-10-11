@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Article;
 use App\Entity\Categorie;
 use Doctrine\ORM\EntityManagerInterface;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use Symfony\Component\String\Slugger\SluggerInterface;
@@ -40,4 +41,11 @@ class CategorieCrudController extends AbstractCrudController
         //appel a ma méthode, afin de persister l'entité
         parent::persistEntity($entityManager,$entityInstance);
     }
+
+    public function configureCrud(Crud $crud): Crud
+    {
+        $crud->setPageTitle(crud::PAGE_INDEX,"Liste des catégories");
+        return $crud;
+    }
+
 }
