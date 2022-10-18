@@ -16,7 +16,7 @@ class UilisateurFixtures extends Fixture
         // $manager->persist($product);
 
         $faker = Factory::create("fr_FR");
-        for ($i=0;$i<=50;$i++){
+        for ($i=0;$i<50;$i++){
             $utilisateur = new Utilisateur();
             $utilisateur->setNom($faker->lastName);
             $utilisateur->setPrenom($faker->firstName);

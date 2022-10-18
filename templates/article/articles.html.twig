@@ -13,6 +13,17 @@
             </a>
             <p>{{ article.contenu }}</p>
             <h2>Commentaire(s) sur l'article ({{article.commentaires | length  }}) : </h2>
+            {{ form_start(formcommentaire) }}
+                {{ form_row(formcommentaire.utilisateur) }}
+                {{ form_row(formcommentaire.contenu,{
+                    'attr':{
+                        'placeholder':"Veuillez saisir un texte pour ce commentaire"
+                    },
+                    'required': true
+                })
+
+                }}
+                <input type="submit" class="btn btn-primary" value="Valider">
                 {% for commentaire in article.commentaires %}
                     <div class="card mt-3">
                         <div class="card-header">

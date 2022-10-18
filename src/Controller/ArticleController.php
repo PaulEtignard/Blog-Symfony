@@ -6,6 +6,7 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Entity\Commentaire;
 use App\Form\ArticleType;
+use App\Form\CommentaireType;
 use App\Repository\ArticleRepository;
 use App\Repository\CommentaireRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -21,10 +22,12 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 class ArticleController extends AbstractController
 {
     private ArticleRepository $repository;
+    private CommentaireRepository $commentaireRepository;
 
     //demander a symfony d'injecter une instance de ArticleRepository
-    public function __construct(ArticleRepository $repository){
+    public function __construct(ArticleRepository $repository, CommentaireRepository $commentaireRepository){
         $this->repository = $repository;
+        $this->commentaireRepository = $commentaireRepository;
     }
     #[Route('/articles', name: 'app_articles')]
     //A l'appel de la méthode, synfony va créer un objet de la classe articleRepository
@@ -47,15 +50,23 @@ class ArticleController extends AbstractController
             ]);
     }
 
-    #[Route('/article/{slug}', name: 'app_article_slug')]
-    public function getArticleById($slug): Response
+    #[Route('/article/{slug}', name: 'app_article_slug',methods:['GET','POST'],priority:1)]
+    public function getArticleById($slug,Request $request): Response
     {
-
+        $commentaire = new Commentaire();
         $article = $this->repository->findOneBy(["slug"=>$slug]);
+        $formCommentaire = $this->createForm(CommentaireType::class,$commentaire);
+        $formCommentaire->handleRequest($request);
 
-
-        return $this->render('article/articles.html.twig',[
+        if ($formCommentaire->isSubmitted()&& $formCommentaire ->isValid()){
+            $commentaire->setCreatedAt(new \DateTime())
+                ->setArticle($article);
+            $this->commentaireRepository->add($commentaire,true);
+            return $this->redirectToRoute("app_articles");
+        }
+        return $this->renderForm('article/articles.html.twig',[
             "article" => $article,
+            "formcommentaire" => $formCommentaire
         ]);
     }
     #[Route('/article/creerArticle', name: 'app_articles_creer',methods: ['GET','POST'], priority: 1)]
