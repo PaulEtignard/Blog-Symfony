@@ -69,7 +69,7 @@ class ArticleController extends AbstractController
             "formcommentaire" => $formCommentaire
         ]);
     }
-    #[Route('/article/creerArticle', name: 'app_articles_creer',methods: ['GET','POST'], priority: 1)]
+    #[Route('/article/creerArticle', name: 'app_articles_creer',methods: ['GET','POST'], priority: 2)]
     public function insert(SluggerInterface $slugger, Request $request) : Response {
         $article = new Article();
         // Création du formulaire
