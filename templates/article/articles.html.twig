@@ -7,11 +7,15 @@
     <ul class="p-2">
         <div class="border p-2 bg-light mt-4 mb-4"><h1>{{ article.titre }}</h1>
             <p class="font-italic mb-3">écrit le : {{ article.createdAt|date('d/m/Y') }}</p>
+            {% if article.categorie is not empty %}
             <a href="{{ path('app_categorie_slug', {'slug': article.categorie.slug}) }}"><span class="badge badge-secondary bg-success mb-3">
                     {{ article.categorie.titre }}
                 </span>
             </a>
-            <p>{{ article.contenu }}</p>
+            {% else %}
+                <span>Pas de catégorie</span>
+            {% endif %}
+            <p>{{ article.contenu | raw }}</p>
             <h2>Commentaire(s) sur l'article ({{article.commentaires | length  }}) : </h2>
             {{ form_start(formcommentaire) }}
                 {{ form_row(formcommentaire.utilisateur) }}

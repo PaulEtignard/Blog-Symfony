@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Article;
 use App\Entity\Categorie;
+use App\Entity\Contact;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -65,8 +66,18 @@ class DashboardController extends AbstractDashboardController
                     ->setAction(Crud::PAGE_NEW),
 
             ]);
+
+
+
+        yield MenuItem::section("Contact");
+        //creer un sous menu pour les articles
+        yield MenuItem::subMenu("Actions","fa fa-bars")
+            ->setSubItems([
+                MenuItem::linkToCrud("Lister Contact","fa fa-eye",Contact::class)
+                    ->setAction(Crud::PAGE_INDEX),
+
+            ]);
         yield MenuItem::section("Autre");
         yield MenuItem::linkToUrl("Retour au site","fa fa-close",$this->generateUrl("app_acceuil") );
-
     }
 }

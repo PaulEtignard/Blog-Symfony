@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nous contacter{% endblock %}
+
+
+{% block body %}
+   <h1>Nous contacter : </h1>
+   {{ form_start(formContact) }}
+   {{ form_row(formContact.nom) }}
+   {{ form_row(formContact.prenom) }}
+   {{ form_row(formContact.email) }}
+   {{ form_row(formContact.sujet) }}
+   {{ form_row(formContact.contenu) }}
+   <input type="submit" class="btn btn-primary" value="Valider"/>
+   {{ form_end(formContact) }}
+{% endblock %}

@@ -58,7 +58,7 @@ class ArticleController extends AbstractController
         $formCommentaire = $this->createForm(CommentaireType::class,$commentaire);
         $formCommentaire->handleRequest($request);
 
-        if ($formCommentaire->isSubmitted()&& $formCommentaire ->isValid()){
+        if ($formCommentaire->isSubmitted()){
             $commentaire->setCreatedAt(new \DateTime())
                 ->setArticle($article);
             $this->commentaireRepository->add($commentaire,true);
